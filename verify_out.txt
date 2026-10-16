@@ -1,0 +1,16 @@
+$ python verify.py 30
+1. F: 848 pairs, distribution of 2D - S(L) - S(R): {-5: 6, -4: 56, -3: 152, -2: 216, -1: 260, 0: 158}
+   max = 0 (must be <= 0)
+2. Proposition Q, spans 9..30: 2797577 sets checked, MSTD sets found: 0
+3. Missing middle difference (spans <= 17): 8 sets
+   m=14  holes=[5, 6, 7, 8, 9]  |A+A|=27  |A-A|=27
+   m=15  holes=[4, 5, 6, 7, 8, 9]  |A+A|=27  |A-A|=29
+   m=15  holes=[4, 6, 7, 8, 9, 11]  |A+A|=29  |A-A|=29
+   m=15  holes=[5, 6, 7, 8, 9, 10]  |A+A|=27  |A-A|=27
+   m=15  holes=[6, 7, 8, 9, 10, 11]  |A+A|=27  |A-A|=29
+   m=16  holes=[5, 6, 7, 8, 9, 10]  |A+A|=30  |A-A|=31
+   m=16  holes=[6, 7, 8, 9, 10, 11]  |A+A|=30  |A-A|=31
+   m=17  holes=[6, 7, 8, 9, 10, 11]  |A+A|=33  |A-A|=33
+4. K_m for 8 <= m <= 200: failures []; for m = 7 the difference is -1
+5. a(1..18) = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 10, 11]
+   matches OEIS A305503: True
