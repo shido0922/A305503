@@ -12,18 +12,18 @@ Shido Tamaki, October 2026. Not peer reviewed.
 
 ## 1. The problem
 
-For a finite set $A \subset \mathbb{Z}$ let $A + A = \lbrace a + b : a, b \in A\rbrace$ and $A - A = \lbrace a - b : a, b \in A\rbrace$. The set $A$ is called *sum-dominant* (or MSTD, "more sums than differences") if $|A + A| > |A - A|$. Since addition is commutative while subtraction is not, most sets have more differences than sums; the smallest sum-dominant sets have 8 elements (Hegarty).
+For a finite set $A \subset \mathbb{Z}$ let $A + A = \lbrace a + b : a, b \in A\rbrace$ and $A - A = \lbrace a - b : a, b \in A\rbrace$. The set $A$ is called *sum-dominant* (or MSTD, "more sums than differences") if $\lvert A + A\rvert > \lvert A - A\rvert$. Since addition is commutative while subtraction is not, most sets have more differences than sums; the smallest sum-dominant sets have 8 elements (Hegarty).
 
-Let $a(n)$ be the largest size of a sum-dominant subset of $\lbrace 0, 1, \dots, n-1\rbrace$, with $a(n) = 0$ if there is none (OEIS A305503, T. Mathur 2018). The whole interval is balanced ($|A+A| = |A-A| = 2n-1$), so some elements must be discarded.
+Let $a(n)$ be the largest size of a sum-dominant subset of $\lbrace 0, 1, \dots, n-1\rbrace$, with $a(n) = 0$ if there is none (OEIS A305503, T. Mathur 2018). The whole interval is balanced, with $\lvert A+A\rvert = \lvert A-A\rvert = 2n-1$, so some elements must be discarded.
 
 Chu proved that $n - 7 \le a(n) \le n - 4$ for $n \ge 16$ (his Theorem 1.2): the lower bound comes from an explicit family $K_m$ that discards 7 elements, and the upper bound from a hand analysis showing that discarding at most 3 elements never works. He conjectured $a(n) = n - 7$ for all $n \ge 16$ (Conjecture 1.3) and verified it by computer for $16 \le n \le 34$. The arXiv version of the paper (arXiv:1906.03793v2) also lists "Is Conjecture 1.3 correct?" as the first question for future research; there the subsets are additionally required to contain $0$ and $n - 1$. The result below covers both versions.
 
 ## 2. Result
 
-**Theorem.** For every $n \ge 16$, $a(n) = n - 7$. Equivalently: if $A \subseteq \lbrace 0, \dots, n-1\rbrace$ and $|A| \ge n - 6$, then $|A + A| \le |A - A|$; and a sum-dominant subset of size $n - 7$ exists. The same holds for sum-dominant subsets containing $0$ and $n - 1$.
+**Theorem.** For every $n \ge 16$, $a(n) = n - 7$. Equivalently: if $A \subseteq \lbrace 0, \dots, n-1\rbrace$ and $\lvert A\rvert \ge n - 6$, then $\lvert A + A\rvert \le \lvert A - A\rvert$; and a sum-dominant subset of size $n - 7$ exists. The same holds for sum-dominant subsets containing $0$ and $n - 1$.
 
 Consequences for the OEIS entry:
-- the formula "$a(n) = n - 7$ (conjectured) for all $n > 15$" is a theorem;
+- the formula `a(n) = n - 7 (conjectured) for all n > 15` is a theorem;
 - the conjectured recurrence $a(n) = 2a(n-1) - a(n-2)$ for $n > 17$ holds;
 - the printed generating function $x^{14}(9 - 9x + x^2)/(1-x)^2$ is off by one: with offset 1 it should be $x^{15}(9 - 9x + x^2)/(1-x)^2$ (the printed one gives $a(14) = 9$).
 
@@ -37,19 +37,19 @@ Throughout, $[a, b] = \lbrace a, a+1, \dots, b\rbrace$ denotes an integer interv
 
 ### 3.1 Translation and holes
 
-For $c \in \mathbb{Z}$, $(A + c) + (A + c) = (A + A) + 2c$ and $(A + c) - (A + c) = A - A$, so translating $A$ does not change $|A + A|$, $|A - A|$ or sum-dominance. Similarly the reflection $A \mapsto c - A$ preserves both sizes; in particular a symmetric set ($A = c - A$) satisfies $|A + A| = |A + (c - A)| = |A - A|$ and is not sum-dominant (Nathanson; see Chu, Proposition 2.1).
+For $c \in \mathbb{Z}$, $(A + c) + (A + c) = (A + A) + 2c$ and $(A + c) - (A + c) = A - A$, so translating $A$ does not change $\lvert A + A\rvert$, $\lvert A - A\rvert$ or sum-dominance. Similarly the reflection $A \mapsto c - A$ preserves both sizes; in particular a symmetric set, that is, one with $A = c - A$, satisfies $\lvert A + A\rvert = \lvert A + (c - A)\rvert = \lvert A - A\rvert$ and is not sum-dominant (Nathanson; see Chu, Proposition 2.1).
 
-**Setting.** Let $m \ge 1$ and $A \subseteq [0, m]$ with $0, m \in A$ (so $m$ is the span of $A$). Let $B = [0, m] \setminus A$ be the set of *holes* and $k = |B|$, so $|A| = m + 1 - k$ and $B \subseteq [1, m-1]$.
+**Setting.** Let $m \ge 1$ and $A \subseteq [0, m]$ with $0, m \in A$ (so $m$ is the span of $A$). Let $B = [0, m] \setminus A$ be the set of *holes* and $k = \lvert B\rvert$, so $\lvert A\rvert = m + 1 - k$ and $B \subseteq [1, m-1]$.
 
-**Proposition Q.** In the setting above, if $|A| \ge 10$ and $k \le 6$, then $A$ is not sum-dominant.
+**Proposition Q.** In the setting above, if $\lvert A\rvert \ge 10$ and $k \le 6$, then $A$ is not sum-dominant.
 
-*Upper bound of the Theorem from Proposition Q.* Let $n \ge 16$ and let $A \subseteq [0, n-1]$ be sum-dominant with $|A| \ge n - 6$. Translate $A$ so that $\min A = 0$; then $m = \max A - \min A \le n - 1$ and $k = m + 1 - |A| \le n - |A| \le 6$, while $|A| \ge n - 6 \ge 10$. This contradicts Proposition Q. Hence $a(n) \le n - 7$.
+*Upper bound of the Theorem from Proposition Q.* Let $n \ge 16$ and let $A \subseteq [0, n-1]$ be sum-dominant with $\lvert A\rvert \ge n - 6$. Translate $A$ so that $\min A = 0$; then $m = \max A - \min A \le n - 1$ and $k = m + 1 - \lvert A\rvert \le n - \lvert A\rvert \le 6$, while $\lvert A\rvert \ge n - 6 \ge 10$. This contradicts Proposition Q. Hence $a(n) \le n - 7$.
 
 ### 3.2 Counting missing sums and differences
 
-Let $\sigma = |[0, 2m] \setminus (A + A)|$ be the number of missing sums and $\delta = |[1, m] \setminus (A - A)|$ the number of missing positive differences. Since $A + A \subseteq [0, 2m]$, and $A - A \subseteq [-m, m]$ contains $0$ and is symmetric under $x \mapsto -x$,
+Let $\sigma = \lvert [0, 2m] \setminus (A + A)\rvert$ be the number of missing sums and $\delta = \lvert [1, m] \setminus (A - A)\rvert$ the number of missing positive differences. Since $A + A \subseteq [0, 2m]$, and $A - A \subseteq [-m, m]$ contains $0$ and is symmetric under $x \mapsto -x$,
 
-$$|A + A| = 2m + 1 - \sigma, \qquad |A - A| = 2m + 1 - 2\delta, \qquad |A + A| - |A - A| = 2\delta - \sigma.$$
+$$\lvert A + A\rvert = 2m + 1 - \sigma, \qquad \lvert A - A\rvert = 2m + 1 - 2\delta, \qquad \lvert A + A\rvert - \lvert A - A\rvert = 2\delta - \sigma.$$
 
 So $A$ is sum-dominant if and only if $2\delta > \sigma$: every missing difference counts twice (for $\pm d$).
 
@@ -70,7 +70,7 @@ $$L = B \cap [1, 5], \qquad R = \lbrace  r \in [1, 5] : m - r \in B \rbrace,$$
 
 and
 
-$$T(L, R) = \lbrace  t \in [0, 5] : \text{for every } a \in [0, t],\ a \in L \text{ or } t - a \in R \rbrace, \qquad D(L, R) = |T(L, R)|.$$
+$$T(L, R) = \lbrace  t \in [0, 5] : \text{for every } a \in [0, t],\ a \in L \text{ or } t - a \in R \rbrace, \qquad D(L, R) = \lvert T(L, R)\rvert.$$
 
 **Claim.** If $t \in [0, 5]$ and $m - t \notin A - A$, then $t \in T(L, R)$.
 
@@ -78,7 +78,7 @@ $$T(L, R) = \lbrace  t \in [0, 5] : \text{for every } a \in [0, t],\ a \in L \te
 
 ### 3.5 Lemma C (missing sums near the ends)
 
-For $P \subseteq [1, 5]$ let $S(P) = |\lbrace  s \in [0, 5] : \text{for every } x \in [0, s],\ x \in P \text{ or } s - x \in P \rbrace|$.
+For $P \subseteq [1, 5]$ let $S(P) = \lvert \lbrace  s \in [0, 5] : \text{for every } x \in [0, s],\ x \in P \text{ or } s - x \in P \rbrace\rvert$.
 
 **Claim.** If $m \ge 6$, then $\sigma \ge S(L) + S(R)$.
 
@@ -86,7 +86,7 @@ For $P \subseteq [1, 5]$ let $S(P) = |\lbrace  s \in [0, 5] : \text{for every } 
 
 ### 3.6 The finite check F
 
-**Fact F.** For all $L, R \subseteq [1, 5]$ with $|L| + |R| \le 6$ (there are $\sum_{j=0}^{6} \binom{10}{j} = 848$ such pairs),
+**Fact F.** For all $L, R \subseteq [1, 5]$ with $\lvert L\rvert + \lvert R\rvert \le 6$ (there are $\sum_{j=0}^{6} \binom{10}{j} = 848$ such pairs),
 
 $$2D(L, R) \le S(L) + S(R).$$
 
@@ -97,27 +97,27 @@ This is checked by computer ([`verify.py`](verify.py), and in Lean by kernel eva
 **Proposition P.** In the setting of 3.1, assume $m \ge 6$ and
 
 - (H1) every missing positive difference $d$ satisfies $d \ge m - 5$;
-- (H2) $|L| + |R| \le 6$.
+- (H2) $\lvert L\rvert + \lvert R\rvert \le 6$.
 
 Then $A$ is not sum-dominant.
 
 *Proof.* By (H1), each missing positive difference $d$ has $t = m - d \in [0, 5]$, and by Lemma B, $t \in T(L, R)$. Since $d \mapsto m - d$ is injective, $\delta \le D(L, R)$. By Lemma C, $\sigma \ge S(L) + S(R)$. By (H2) and Fact F,
-$$|A + A| - |A - A| = 2\delta - \sigma \le 2D(L, R) - S(L) - S(R) \le 0. \qquad \square$$
+$$\lvert A + A\rvert - \lvert A - A\rvert = 2\delta - \sigma \le 2D(L, R) - S(L) - S(R) \le 0. \qquad \square$$
 
 ### 3.8 Proof of Proposition Q
 
-$|A| \ge 10$ means $k \le m - 9$, so $m \ge 9$ and $k \le \min(6, m - 9)$. We verify (H1) and (H2) and apply Proposition P. By Lemma A(a), a missing $d$ with $2d > m$ satisfies $m - d \le k - 1 \le 5$, as (H1) requires. So (H1) can fail only through a missing "middle" difference $d$ with $2d \le m$, which by Lemma A(b) requires $3k \ge m + 1$.
+$\lvert A\rvert \ge 10$ means $k \le m - 9$, so $m \ge 9$ and $k \le \min(6, m - 9)$. We verify (H1) and (H2) and apply Proposition P. By Lemma A(a), a missing $d$ with $2d > m$ satisfies $m - d \le k - 1 \le 5$, as (H1) requires. So (H1) can fail only through a missing "middle" difference $d$ with $2d \le m$, which by Lemma A(b) requires $3k \ge m + 1$.
 
-- **$m \ge 18$.** $3k \le 18 < m + 1$, so there is no missing middle difference and (H1) holds. Since $m \ge 11$, the windows $[1, 5]$ and $[m - 5, m - 1]$ are disjoint, so $|L| + |R| \le k \le 6$, which is (H2).
-- **$9 \le m \le 13$.** $3k \le 3m - 27 < m + 1$, so (H1) holds. For (H2): if $m \ge 11$ then $|L| + |R| \le k \le 6$; if $m \in \lbrace 9, 10\rbrace$ then $k \le 1$ and $|L| + |R| \le 2k \le 2$.
-- **$14 \le m \le 17$.** (H2) holds as $m \ge 11$. If no middle difference is missing, (H1) holds and we are done. Otherwise Lemma A(b) gives $d \le k$ and $m - d + 1 \le 2k$ with $k \le 6$ ($k \le 5$ if $m = 14$) and $2d \le m$, so
+- **Case $m \ge 18$.** $3k \le 18 < m + 1$, so there is no missing middle difference and (H1) holds. Since $m \ge 11$, the windows $[1, 5]$ and $[m - 5, m - 1]$ are disjoint, so $\lvert L\rvert + \lvert R\rvert \le k \le 6$, which is (H2).
+- **Case $9 \le m \le 13$.** $3k \le 3m - 27 < m + 1$, so (H1) holds. For (H2): if $m \ge 11$ then $\lvert L\rvert + \lvert R\rvert \le k \le 6$; if $m \in \lbrace 9, 10\rbrace$ then $k \le 1$ and $\lvert L\rvert + \lvert R\rvert \le 2k \le 2$.
+- **Case $14 \le m \le 17$.** (H2) holds as $m \ge 11$. If no middle difference is missing, (H1) holds and we are done. Otherwise Lemma A(b) gives $d \le k$ and $m - d + 1 \le 2k$ with $k \le 6$ (and $k \le 5$ if $m = 14$) and $2d \le m$, so
   $$(m, d) \in \lbrace (14,5), (15,4), (15,5), (15,6), (16,5), (16,6), (17,6)\rbrace.$$
-  If $\mathcal{F}$ is a family of pairwise disjoint pairs $P_a$, each containing a hole, then $k \ge |\mathcal{F}|$; if $|\mathcal{F}| = k$, then every hole lies in $\bigcup \mathcal{F}$ and each pair contains exactly one hole. Using two such families in each case:
+  If $\mathcal{F}$ is a family of pairwise disjoint pairs $P_a$, each containing a hole, then $k \ge \lvert \mathcal{F}\rvert$; if $\lvert \mathcal{F}\rvert = k$, then every hole lies in $\bigcup \mathcal{F}$ and each pair contains exactly one hole. Using two such families in each case:
 
   | $(m, d)$ | disjoint families | conclusion |
   |---|---|---|
   | $(14, 5)$, $k \le 5$ | $P_0..P_4$ (union $[0, 9]$); $P_5..P_9$ (union $[5, 14]$) | $B = [5, 9]$ |
-  | $(15, 4)$ | $P_0..P_3, P_8..P_{11}$ (8 pairs) | impossible ($k \ge 8$) |
+  | $(15, 4)$ | $P_0..P_3, P_8..P_{11}$ (8 pairs) | impossible, since $k \ge 8$ |
   | $(15, 5)$ | $P_0..P_4, P_{10}$ (union $[0, 10] \cup \lbrace 15\rbrace$); $P_0, P_6..P_{10}$ (union $\lbrace 0, 5\rbrace \cup [6, 15]$) | $B = [5, 10]$ (as $0, 15 \notin B$) |
   | $(15, 6)$ | $P_0..P_5$ (union $[0, 11]$); $P_4..P_9$ (union $[4, 15]$) | $B \subseteq [4, 11]$; $P_0..P_3$ force $6, 7, 8, 9 \in B$, and one hole in each of $\lbrace 4, 10\rbrace$, $\lbrace 5, 11\rbrace$: 4 sets |
   | $(16, 5)$ | $P_0..P_4, P_{10}, P_{11}$ (7 pairs) | impossible |
@@ -147,10 +147,10 @@ For $m \ge 8$ let
 $$K_m = [0, m + 7] \setminus \lbrace 3, 5, 6, m+1, m+2, m+3, m+5\rbrace = \lbrace 0, 1, 2, 4\rbrace \cup [7, m] \cup \lbrace m+4, m+6, m+7\rbrace.$$
 Chu (Lemma 4.1) states this for $m \ge 9$; the same computation works for $m = 8$, which is needed for $n = 16$.
 
-- *Sums.* $\lbrace 0,1,2,4\rbrace + \lbrace 0,1,2,4\rbrace \supseteq [0, 6]$; $[7, m] + \lbrace 0,1,2,4\rbrace = [7, m+4]$ (as $11 \le m + 3$); $\lbrace 0,1,2,4\rbrace + \lbrace m+4, m+6, m+7\rbrace = [m+4, m+11]$; $[7, m] + \lbrace m+4, m+6, m+7\rbrace = [m+11, 2m+7]$ (as $m + 13 \le 2m + 5$); and $\lbrace m+4, m+6, m+7\rbrace + \lbrace m+4, m+6, m+7\rbrace = \lbrace 2m+8, 2m+10, 2m+11, 2m+12, 2m+13, 2m+14\rbrace$. So $K_m + K_m \supseteq [0, 2m+14] \setminus \lbrace 2m+9\rbrace$. If $2m + 9 = x + y$ with $x \le y$ in $K_m$, then $y \le m + 7$ forces $x \ge m + 2$, so $x \in \lbrace m+4, m+6, m+7\rbrace$ and $y \in \lbrace m+5, m+3, m+2\rbrace$, none of which is in $K_m$. Hence $|K_m + K_m| = 2m + 14$.
-- *Differences.* $\lbrace 0,1,2,4\rbrace - \lbrace 0,1,2,4\rbrace \supseteq [1, 4]$; $[7, m] - \lbrace 0,1,2,4\rbrace \supseteq [3, m]$ (as $m - 4 \ge 4$); $\lbrace m+4, m+6, m+7\rbrace - \lbrace 0,1,2,4\rbrace = \lbrace m, m+2, m+3, m+4, m+5, m+6, m+7\rbrace$. So the positive differences include $[1, m+7] \setminus \lbrace m+1\rbrace$. If $m + 1 = y - x$ with $x, y \in K_m$, then $x \le 6$, so $x \in \lbrace 0,1,2,4\rbrace$ and $y \in \lbrace m+1, m+2, m+3, m+5\rbrace$, none of which is in $K_m$. Hence $|K_m - K_m| = 2(m + 6) + 1 = 2m + 13$.
+- *Sums.* $\lbrace 0,1,2,4\rbrace + \lbrace 0,1,2,4\rbrace \supseteq [0, 6]$; $[7, m] + \lbrace 0,1,2,4\rbrace = [7, m+4]$ (as $11 \le m + 3$); $\lbrace 0,1,2,4\rbrace + \lbrace m+4, m+6, m+7\rbrace = [m+4, m+11]$; $[7, m] + \lbrace m+4, m+6, m+7\rbrace = [m+11, 2m+7]$ (as $m + 13 \le 2m + 5$); and $\lbrace m+4, m+6, m+7\rbrace + \lbrace m+4, m+6, m+7\rbrace = \lbrace 2m+8, 2m+10, 2m+11, 2m+12, 2m+13, 2m+14\rbrace$. So $K_m + K_m \supseteq [0, 2m+14] \setminus \lbrace 2m+9\rbrace$. If $2m + 9 = x + y$ with $x \le y$ in $K_m$, then $y \le m + 7$ forces $x \ge m + 2$, so $x \in \lbrace m+4, m+6, m+7\rbrace$ and $y \in \lbrace m+5, m+3, m+2\rbrace$, none of which is in $K_m$. Hence $\lvert K_m + K_m\rvert = 2m + 14$.
+- *Differences.* $\lbrace 0,1,2,4\rbrace - \lbrace 0,1,2,4\rbrace \supseteq [1, 4]$; $[7, m] - \lbrace 0,1,2,4\rbrace \supseteq [3, m]$ (as $m - 4 \ge 4$); $\lbrace m+4, m+6, m+7\rbrace - \lbrace 0,1,2,4\rbrace = \lbrace m, m+2, m+3, m+4, m+5, m+6, m+7\rbrace$. So the positive differences include $[1, m+7] \setminus \lbrace m+1\rbrace$. If $m + 1 = y - x$ with $x, y \in K_m$, then $x \le 6$, so $x \in \lbrace 0,1,2,4\rbrace$ and $y \in \lbrace m+1, m+2, m+3, m+5\rbrace$, none of which is in $K_m$. Hence $\lvert K_m - K_m\rvert = 2(m + 6) + 1 = 2m + 13$.
 
-So $|K_m + K_m| - |K_m - K_m| = 1$. With $m = n - 8$, $K_{n-8} \subseteq [0, n-1]$ contains $0$ and $n - 1$ and has $n - 7$ elements, so $a(n) \ge n - 7$ for $n \ge 16$ (also in the version requiring $0, n-1 \in A$). Together with 3.8 this proves the Theorem. $\blacksquare$
+So $\lvert K_m + K_m\rvert - \lvert K_m - K_m\rvert = 1$. With $m = n - 8$, $K_{n-8} \subseteq [0, n-1]$ contains $0$ and $n - 1$ and has $n - 7$ elements, so $a(n) \ge n - 7$ for $n \ge 16$ (also in the version requiring $0, n-1 \in A$). Together with 3.8 this proves the Theorem. $\blacksquare$
 
 ## 4. Formal verification (Lean 4)
 
