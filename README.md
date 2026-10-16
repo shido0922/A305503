@@ -8,7 +8,7 @@ Shido Tamaki, October 2026. Not peer reviewed.
 > The proof, the computer checks and the Lean formalization were found and written by Claude, an AI model made by Anthropic (Claude Opus 5.5), in research sessions that Shido Tamaki initiated and directed in October 2026. An independent review of the proof and of the Lean statement, with a separate re-implementation of all computations, was done by another Claude model (Claude Fable 5.1). This write-up was also drafted by Claude.
 > The whole argument is formally verified in Lean 4 with Mathlib (file [`A305503.lean`](A305503.lean)). A reader can check the result by compiling that one file; what remains to be checked by a human is that the Lean statement (Section 4) says what the conjecture says.
 >
-> **What I checked myself (Shido Tamaki).** I ran [`verify.py`](verify.py) on my own computer and confirmed that all five checks give the results stated here. I also checked that the Lean statement in Section 4 says the same thing as Chu's Conjecture 1.3.
+> **What I checked myself (Shido Tamaki).** I ran [`verify.py`](verify.py) on my own computer and confirmed that all five checks give the results stated here. I also checked that the Lean statement in Section 4 says the same thing as Chu's Conjecture 1.3. I take responsibility for the mathematical claims made in this repository.
 
 ## 1. The problem
 
